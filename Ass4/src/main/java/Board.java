@@ -78,21 +78,28 @@ public class Board {
 
     // does this board equal y?
     public boolean equals(Object y) {
-        if (y != null && y.getClass() == this.getClass()) {
-            final Board that = (Board) y;
-            if (that.board.length == board.length) {
-                for (int i = 0; i < board.length; i++) {
-                    for (int j = 0; j < board.length; j++) {
-                        if (board[i][j] != that.board[i][j]) {
-                            return false;
-                        }
-                    }
-                }
-                return true;
-            }
+        if (y == this) {
+            return true;
+        }
+        
+        if (y == null) {
             return false;
         }
-        return false;
+        
+        if (y.getClass() != this.getClass()){
+            return false;
+        }
+        
+        Board that = (Board) y;
+        if (that.board.length != board.length) return false;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                if (board[i][j] != that.board[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void swap(int x1, int y1, int x2, int y2) {
